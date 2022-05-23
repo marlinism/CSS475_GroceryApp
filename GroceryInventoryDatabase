@@ -1,0 +1,79 @@
+CREATE DATABASE GroceryInventory;
+\c GroceryInventory;
+
+CREATE TABLE GroceryItem(
+        ID 		SERIAL not null,
+        SKU 		VARCHAR(5) not null unique, 
+        Name 		VARCHAR(30) not null,
+        SalesPrice	Decimals(5, 2),
+        Description	VARCHAR(100) not null,
+        DepartmentID	VARCHAR(100) not null unique,
+        Weight		Decimal(5, 3),
+		
+        Primary Key 	(ID),
+        Foreign Key 	(DepartmentID) references 
+			Department(ID)
+			Deferrable Initially Deferred 
+);
+
+CREATE TABLE Department(
+        ID 		SERIAL not null,
+        DepartmentName VARCHAR(30) not null,
+	
+        Primary Key 	(ID)
+);
+
+CREATE TABLE Bag(
+        ItemID 		SERIAL not null,
+        TransactionID	SERIAL not null,
+        QuantityOrdered INTEGER not null,
+        SalesPrice	Decimals(5, 2),
+	
+        Primary Key 	(ItemID),
+			(TransactionID),
+        Foreign Key 	(ItemID) references 
+			GroceryItem(ID)
+			Deferrable Initially Deferred,
+(TransactionID) references 
+			Transaction(ID)
+			Deferrable Initially Deferred	
+);
+
+CREATE TABLE Transaction( 
+        ID   SERIAL not null,
+		TransactionNumber   VARCHAR (10) not null,
+		Date   TIMESTAMP not null
+		
+		Primary Key (ID)
+);
+
+CREATE TABLE InventoryType(
+        ID SERIAL not null, 
+		Name VARCHAR(20) not null
+		
+		Primary Key (ID)
+);
+
+CREATE TABLE Aisle(
+        ID SERIAL not null, 
+		AisleNumber Integer not null
+		
+		Primary Key (ID)
+);
+
+CREATE TABLE InventoryInfo(
+		ID SERIAL not null,
+		GroceryItemID INTEGER not null, 
+		TypeID INTEGER not null, 
+		ExpiredDate DATE not null, 
+		QuantityAvailability INTEGER not null, 
+		Location INTEGER not null, 
+		
+		Primary Key (ID), 
+		Foreign Key (GroceryItemID) references GroceryItem(ID)
+		Deferrable Initially Deferred,
+		Foreign Key (TypeID) references InventoryType(ID)
+		Deferrable Initially Deferred,
+		Foreign Key (Location) references Aisle(ID)
+		Deferrable Initially Deferred
+);
