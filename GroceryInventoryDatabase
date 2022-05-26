@@ -5,9 +5,9 @@ CREATE TABLE GroceryItem(
         ID 		SERIAL not null,
         SKU 		VARCHAR(5) not null unique, 
         Name 		VARCHAR(30) not null,
-        SalesPrice	Decimals(5, 2),
-        Description	VARCHAR(100) not null,
-        DepartmentID	VARCHAR(100) not null unique,
+        SalesPrice	Decimals(5, 2) not null,
+        Description	VARCHAR(100),
+        DepartmentID	VARCHAR(100) not null,
         Weight		Decimal(5, 3),
 		
         Primary Key 	(ID),
@@ -17,8 +17,8 @@ CREATE TABLE GroceryItem(
 );
 
 CREATE TABLE Department(
-        ID 		SERIAL not null,
-        DepartmentName VARCHAR(30) not null,
+        ID 	       SERIAL not null,
+        DepartmentName VARCHAR(30) not null unique,
 	
         Primary Key 	(ID)
 );
@@ -27,47 +27,47 @@ CREATE TABLE Bag(
         ItemID 		SERIAL not null,
         TransactionID	SERIAL not null,
         QuantityOrdered INTEGER not null,
-        SalesPrice	Decimals(5, 2),
+        TotalSalesPrice	Decimals(5, 2) not null,
 	
         Primary Key 	(ItemID),
 			(TransactionID),
         Foreign Key 	(ItemID) references 
 			GroceryItem(ID)
 			Deferrable Initially Deferred,
-(TransactionID) references 
+			(TransactionID) references 
 			Transaction(ID)
 			Deferrable Initially Deferred	
 );
 
 CREATE TABLE Transaction( 
-        ID   SERIAL not null,
-		TransactionNumber   VARCHAR (10) not null,
-		Date   TIMESTAMP not null
+        ID   		  SERIAL not null,
+	TransactionNumber VARCHAR(10) not null,
+	Date   		  TIMESTAMP not null
 		
-		Primary Key (ID)
+	Primary Key 	  (ID)
 );
 
 CREATE TABLE InventoryType(
-        ID SERIAL not null, 
-		Name VARCHAR(20) not null
+        ID 		  SERIAL not null, 
+	Name 		  VARCHAR(30) not null unique
 		
-		Primary Key (ID)
+	Primary Key 	  (ID)
 );
 
 CREATE TABLE Aisle(
-        ID SERIAL not null, 
-		AisleNumber Integer not null
+        ID 		  SERIAL not null, 
+	AisleNumber 	  Integer not null unique
 		
-		Primary Key (ID)
+	Primary Key 	  (ID)
 );
 
 CREATE TABLE InventoryInfo(
 		ID SERIAL not null,
 		GroceryItemID INTEGER not null, 
-		TypeID INTEGER not null, 
+		InventoryTypeID INTEGER not null, 
 		ExpiredDate DATE not null, 
 		QuantityAvailability INTEGER not null, 
-		Location INTEGER not null, 
+		AisleID INTEGER not null, 
 		
 		Primary Key (ID), 
 		Foreign Key (GroceryItemID) references GroceryItem(ID)
