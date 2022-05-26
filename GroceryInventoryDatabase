@@ -38,6 +38,7 @@ CREATE TABLE GroceryItem(
         Description   VARCHAR(100),
         DepartmentID   INTEGER not null,
         Weight   Decimal(5, 3),
+	Image   String,
 		
         Primary Key (ID),
         Foreign Key (DepartmentID) references Department(ID)
