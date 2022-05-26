@@ -42,21 +42,21 @@ CREATE TABLE Bag(
 CREATE TABLE Transaction( 
         ID   		  SERIAL not null,
 	TransactionNumber VARCHAR(10) not null,
-	Date   		  TIMESTAMP not null
+	Date   		  TIMESTAMP not null,
 		
 	Primary Key 	  (ID)
 );
 
 CREATE TABLE InventoryType(
         ID 		  SERIAL not null, 
-	Name 		  VARCHAR(30) not null unique
+	Name 		  VARCHAR(30) not null unique,
 		
 	Primary Key 	  (ID)
 );
 
 CREATE TABLE Aisle(
         ID 		  SERIAL not null, 
-	AisleNumber 	  Integer not null unique
+	AisleNumber 	  Integer not null unique,
 		
 	Primary Key 	  (ID)
 );
