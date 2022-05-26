@@ -32,7 +32,7 @@ CREATE TABLE Transaction(
 
 CREATE TABLE GroceryItem(
         ID   SERIAL not null,
-        SKU   VARCHAR(5) not null unique, 
+        SKU   INTEGER(5) not null unique, 
         Name   VARCHAR(30) not null,
         SalesPrice   Decimal(5, 2) not null,
         Description   VARCHAR(100),
