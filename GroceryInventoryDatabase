@@ -1,79 +1,78 @@
-CREATE DATABASE GroceryInventory;
-\c GroceryInventory;
-
-CREATE TABLE GroceryItem(
-        ID 		SERIAL not null,
-        SKU 		VARCHAR(5) not null unique, 
-        Name 		VARCHAR(30) not null,
-        SalesPrice	Decimals(5, 2) not null,
-        Description	VARCHAR(100),
-        DepartmentID	VARCHAR(100) not null,
-        Weight		Decimal(5, 3),
-		
-        Primary Key 	(ID),
-        Foreign Key 	(DepartmentID) references 
-			Department(ID)
-			Deferrable Initially Deferred 
-);
+CREATE DATABASE groceryinventory;
+\c groceryinventory
 
 CREATE TABLE Department(
-        ID 	       SERIAL not null,
-        DepartmentName VARCHAR(30) not null unique,
+        ID   SERIAL not null,
+        DepartmentName   VARCHAR(30) not null unique,
 	
-        Primary Key 	(ID)
-);
-
-CREATE TABLE Bag(
-        ItemID 		SERIAL not null,
-        TransactionID	SERIAL not null,
-        QuantityOrdered INTEGER not null,
-        TotalSalesPrice	Decimals(5, 2) not null,
-	
-        Primary Key 	(ItemID),
-			(TransactionID),
-        Foreign Key 	(ItemID) references 
-			GroceryItem(ID)
-			Deferrable Initially Deferred,
-			(TransactionID) references 
-			Transaction(ID)
-			Deferrable Initially Deferred	
-);
-
-CREATE TABLE Transaction( 
-        ID   		  SERIAL not null,
-	TransactionNumber VARCHAR(10) not null,
-	Date   		  TIMESTAMP not null,
-		
-	Primary Key 	  (ID)
+        Primary Key (ID)
 );
 
 CREATE TABLE InventoryType(
-        ID 		  SERIAL not null, 
-	Name 		  VARCHAR(30) not null unique,
+        ID   SERIAL not null, 
+	    Name   VARCHAR(30) not null unique,
 		
-	Primary Key 	  (ID)
+		Primary Key (ID)
 );
 
 CREATE TABLE Aisle(
-        ID 		  SERIAL not null, 
-	AisleNumber 	  Integer not null unique,
+        ID   SERIAL not null, 
+	    AisleNumber   Integer not null unique,
 		
-	Primary Key 	  (ID)
+		Primary Key (ID)
+);
+
+CREATE TABLE Transaction( 
+        ID   SERIAL not null,
+	    TransactionNumber   VARCHAR(10) not null,
+	    Date   TIMESTAMP not null,
+		
+		Primary Key (ID)
+);
+
+CREATE TABLE GroceryItem(
+        ID   SERIAL not null,
+        SKU   VARCHAR(5) not null unique, 
+        Name   VARCHAR(30) not null,
+        SalesPrice   Decimal(5, 2) not null,
+        Description   VARCHAR(100),
+        DepartmentID   INTEGER not null,
+        Weight   Decimal(5, 3),
+		
+        Primary Key (ID),
+        Foreign Key (DepartmentID) references Department(ID)
+		Deferrable Initially Deferred
 );
 
 CREATE TABLE InventoryInfo(
-		ID SERIAL not null,
-		GroceryItemID INTEGER not null, 
-		InventoryTypeID INTEGER not null, 
-		ExpiredDate DATE not null, 
-		QuantityAvailability INTEGER not null, 
-		AisleID INTEGER not null, 
+		ID   SERIAL not null,
+		GroceryItemID   INTEGER not null, 
+		InventoryTypeID   INTEGER not null, 
+		ExpiredDate   DATE not null, 
+		QuantityAvailability   INTEGER not null, 
+		AisleID   INTEGER not null, 
 		
 		Primary Key (ID), 
 		Foreign Key (GroceryItemID) references GroceryItem(ID)
 		Deferrable Initially Deferred,
-		Foreign Key (TypeID) references InventoryType(ID)
+		Foreign Key (InventoryTypeID) references InventoryType(ID)
 		Deferrable Initially Deferred,
-		Foreign Key (Location) references Aisle(ID)
+		Foreign Key (AisleID) references Aisle(ID)
 		Deferrable Initially Deferred
 );
+
+CREATE TABLE Bag(
+        ItemID   SERIAL not null,
+        TransactionID   SERIAL not null,
+        QuantityOrdered   INTEGER not null,
+        TotalSalesPrice   Decimal(5, 2) not null,
+	
+        Primary Key (ItemID, TransactionID),
+        Foreign Key (ItemID) references GroceryItem(ID)
+		Deferrable Initially Deferred,
+		Foreign Key (TransactionID) references Transaction(ID)
+		Deferrable Initially Deferred	
+);
+
+\c postgres
+DROP DATABASE groceryinventory;
