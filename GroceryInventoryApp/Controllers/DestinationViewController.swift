@@ -97,9 +97,36 @@ class DestinationViewController: UIViewController {
         if(Description.text == "") {
             descriptionLabel.isHidden = true
         }
-        // Do any additional setup after loading the view.
+        
+//        view.addSubview(floatingButton)
+//        floatingButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        
     }
     
+    private let floatingButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 60, height: 60))
+        button.backgroundColor = UIColor.init(named: "BrandBlue")
+        
+        let image = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 32, weight: .medium))
+        button.setImage(image, for: .normal)
+        button.tintColor = .white
+        button.setTitleColor(.white, for: .normal)
+        button.layer.shadowRadius = 10
+        button.layer.shadowOpacity = 0.3
+        
+        button.layer.cornerRadius = 30
+        return button
+    }()
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        floatingButton.frame = CGRect(x: view.frame.size.width - 70, y: view.frame.size.height - 120, width: 60, height: 60)
+    }
+    
+    @objc private func didTapButton() {
+//        let mapViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "EditViewController") as? EditViewController
+//        self.navigationController?.pushViewController(mapViewControllerObj!, animated: true)
+    }
 
     /*
     // MARK: - Navigation
