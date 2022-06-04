@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pgg-iW-lNQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pgg-iW-lNQ">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -1037,7 +1037,7 @@
                         <outlet property="nameError" destination="jSl-U5-FwH" id="Av6-tZ-XEP"/>
                         <outlet property="nameField" destination="tpj-MF-VBG" id="PwH-Q1-UbW"/>
                         <outlet property="priceError" destination="c8H-Jg-X78" id="uLm-7S-QEL"/>
-                        <outlet property="priceField" destination="qwd-7h-oSX" id="0cy-41-33s"/>
+                        <outlet property="priceField" destination="Rwh-Zf-oAM" id="w6r-mz-Epg"/>
                         <outlet property="quantityField" destination="aBY-vh-xbl" id="LIG-Wj-0qT"/>
                         <outlet property="skuError" destination="awd-gq-bsX" id="gnh-pE-hPS"/>
                         <outlet property="skuField" destination="Uro-7w-PHq" id="FXw-tK-hiJ"/>
@@ -1070,14 +1070,14 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="29R-Wy-QcQ"/>
-        <segue reference="chJ-S8-9v5"/>
+        <segue reference="TzB-VY-GdL"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.up.arrow.down" catalog="system" width="128" height="98"/>
         <image name="import" width="512" height="512"/>
         <image name="inventory" width="860" height="900"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="plus" width="512" height="512"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="BrandBlue">
             <color red="0.16500000655651093" green="0.77999997138977051" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
